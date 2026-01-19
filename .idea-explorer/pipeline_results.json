@@ -11,7 +11,7 @@
       },
       "log_file": "/data/hypogenicai/workspaces/ai-undetectability-lb-433c-claude/logs/resource_finder_claude.log",
       "transcript_file": "/data/hypogenicai/workspaces/ai-undetectability-lb-433c-claude/logs/resource_finder_claude_transcript.jsonl",
-      "elapsed_time": 769.1759731769562
+      "elapsed_time": 5.060714244842529
     }
   },
   "work_dir": "/data/hypogenicai/workspaces/ai-undetectability-lb-433c-claude"

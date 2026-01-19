@@ -1,0 +1,43 @@
+idea:
+  title: A Leaderboard for AI Undetectability
+  domain: artificial_intelligence
+  hypothesis: "Establishing a public leaderboard with four tracks\u2014inference,\
+    \ postediting, finetuning, and pretraining\u2014will enable systematic benchmarking\
+    \ of methods for making AI-generated text less detectable as AI, and will help\
+    \ compare the effectiveness of different approaches in reducing AI detectability\
+    \ while maintaining output quality.\n"
+  background:
+    description: "The race is on to make AI not sound like AI. Here's an idea: let's\
+      \ setup a leaderboard for tracking these.\nIdeally there would be four tracks\
+      \ to the leaderboard: inference, postediting, finetuning, and pretraining.\n\
+      For inference, competitors would submit an inference function that decodes from\
+      \ a fixed LLM on a fixed set of prompts. We would then attempt to detect the\
+      \ AI vs. hidden human outputs.\nFor postediting, competitors would a submit\
+      \ a program (which potentially calls an LLM) that converts the text into human-like\
+      \ text. LLM judges would reason about whether the post-edited text contains\
+      \ more or less the same information as the original.\nFor finetuning, competitiors\
+      \ would submit a model that can write more humanly, and we would have to go\
+      \ to pains to verify it was truly finetuned, but it is perhaps safe to assume\
+      \ that finetuning is so much easier than pretraining that it might as well be.\
+      \ In addition to AI-detection tasks, the finetuning model would be subject to\
+      \ a bunch of classic LLM tasks to make sure that finetuning didn't significantly\
+      \ degrade performance, though some loss should be allowed, e.g., on hard coding\
+      \ tasks, since that isn't the focus.\nFor pretraining, competitors should submit\
+      \ their own model to attempt to complete the above tasks. It will be difficult\
+      \ to fully assess if the model is novel, but perhaps someone has looked at detecting\
+      \ the provenance of LLM models? Regardless, pretraining is the least important\
+      \ one\u2014few will have the resources to compete, and those who do will be\
+      \ able to show it off in other ways. Or so I believe now.\n"
+  metadata:
+    tags:
+    - leaderboard
+    - ai-detection
+    - llm
+    - human-likeness
+    source: IdeaHub
+    source_url: https://hypogenic.ai/ideahub/idea/AMJ09TAxgffEYAQW8cCh
+    idea_id: a_leaderboard_for_ai_undetecta_20260118_193721_cfd2561b
+    created_at: '2026-01-18T19:37:21.212532'
+    status: submitted
+    github_repo_name: ai-undetectability-lb-433c-claude
+    github_repo_url: https://github.com/Hypogenic-AI/ai-undetectability-lb-433c-claude

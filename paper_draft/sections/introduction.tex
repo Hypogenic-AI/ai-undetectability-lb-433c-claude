@@ -1,0 +1,31 @@
+\section{Introduction}
+
+The proliferation of large language models (LLMs) capable of generating fluent, coherent text has created an urgent need for reliable detection methods. From academic integrity concerns to misinformation campaigns, the potential misuse of AI-generated content poses significant challenges across domains~\citep{solaiman2019release, tang2023science}. In response, researchers have developed a diverse array of detection techniques, ranging from statistical methods analyzing probability distributions~\citep{mitchell2023detectgpt} to learned classifiers trained on human and machine-generated text~\citep{he2024mgtbench}.
+
+However, the relationship between detection and evasion is inherently adversarial. As detection methods improve, so too do techniques for evading them. Recent work has demonstrated that paraphrasing can dramatically reduce detection accuracy---DIPPER paraphrasing drops DetectGPT from 70.3\% to 4.6\% true positive rate~\citep{krishna2023paraphrasing}---while prompt-based methods like SICO can reduce detector AUC by approximately 0.5 on average~\citep{lu2024sico}. Understanding these evasion techniques is crucial not only for developing more robust detectors but also for legitimate applications requiring natural-sounding AI assistance.
+
+\paragraph{Gap in Existing Work.} Despite significant progress in both detection and evasion research, a critical gap remains: \textit{there is no unified framework for systematically comparing evasion methods across different intervention points}. Existing benchmarks such as RAID~\citep{dugan2024raid}, MGTBench~\citep{he2024mgtbench}, and M4GT-Bench~\citep{wang2024m4gt} focus primarily on evaluating detection methods rather than organizing and comparing evasion techniques. Furthermore, current evasion research tends to evaluate methods in isolation, using different detectors, datasets, and metrics, making cross-method comparison difficult.
+
+We identify four distinct intervention points where undetectability methods can operate:
+\begin{enumerate}
+    \item \textbf{Inference Track}: Modifying prompts and generation parameters to produce less detectable text directly from the model.
+    \item \textbf{Post-editing Track}: Applying transformations (paraphrasing, rewriting) to existing AI-generated text.
+    \item \textbf{Fine-tuning Track}: Adapting model weights through techniques like LoRA to minimize detection signatures.
+    \item \textbf{Pretraining Track}: Modifying training procedures or data to produce models with inherently less detectable outputs.
+\end{enumerate}
+
+\paragraph{Our Contributions.} In this paper, we introduce a multi-track leaderboard framework for benchmarking AI text undetectability methods and present experimental results from two tracks:
+
+\begin{itemize}
+    \item We propose a \textbf{unified four-track taxonomy} organizing undetectability methods by intervention point, enabling systematic comparison across fundamentally different approaches.
+
+    \item We implement and evaluate \textbf{inference-time and post-editing strategies} using an ensemble detector combining perplexity-based and burstiness-based detection, finding that inference modifications achieve 70\% evasion while preserving full semantic content.
+
+    \item We demonstrate that \textbf{prompt engineering offers superior quality-evasion trade-offs} compared to post-editing: both achieve similar evasion rates (70\%), but post-editing degrades content quality (41\% word overlap vs. 100\% for inference methods).
+
+    \item We discover a \textbf{counterintuitive finding}: personalization strategies that attempt to add human-like elements (personal anecdotes, casual language) actually \textit{increase} detectability, with the ``personal\_style'' post-editing method achieving only 30\% evasion rate (worst on the leaderboard).
+\end{itemize}
+
+These findings have practical implications for organizations developing AI writing assistants---prompt-based strategies should be prioritized for naturalness---and for detection researchers who should account for prompt-engineered outputs in training data.
+
+\paragraph{Paper Organization.} Section~\ref{sec:related} reviews related work in AI text detection and evasion. Section~\ref{sec:methodology} describes our leaderboard framework, detector ensemble, and experimental setup. Section~\ref{sec:results} presents quantitative results across tracks. Section~\ref{sec:discussion} analyzes findings, limitations, and broader implications. Section~\ref{sec:conclusion} summarizes contributions and outlines future work.

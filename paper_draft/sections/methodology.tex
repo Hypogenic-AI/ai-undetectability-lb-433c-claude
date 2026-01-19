@@ -1,0 +1,132 @@
+\section{Methodology}
+\label{sec:methodology}
+
+We present a multi-track leaderboard framework for systematically benchmarking AI text undetectability methods. Our framework organizes techniques by intervention point and evaluates them using a unified detector ensemble with standardized metrics.
+
+\subsection{Leaderboard Framework Design}
+
+\paragraph{Track Taxonomy.} We define four tracks based on where in the text generation pipeline the intervention occurs:
+
+\begin{itemize}
+    \item \textbf{Inference Track}: Modifications to prompts, system messages, or decoding parameters at generation time. The model weights remain unchanged.
+    \item \textbf{Post-editing Track}: Transformations applied to already-generated AI text, such as paraphrasing, sentence restructuring, or word substitution.
+    \item \textbf{Fine-tuning Track}: Adapter-based or full fine-tuning to modify model behavior while preserving general capabilities.
+    \item \textbf{Pretraining Track}: Modifications to training data, objectives, or architecture to produce models with inherently less detectable outputs.
+\end{itemize}
+
+In this work, we implement and evaluate the first two tracks (inference and post-editing), as they require only API access and do not need substantial compute resources.
+
+\paragraph{Evaluation Protocol.} Each method in the leaderboard is evaluated on:
+\begin{enumerate}
+    \item \textit{Evasion metrics}: Detection performance of the ensemble detector
+    \item \textit{Quality metrics}: Preservation of semantic content and fluency
+    \item \textit{Pareto analysis}: Trade-off between evasion and quality
+\end{enumerate}
+
+\subsection{Detector Ensemble}
+
+We use an ensemble of two complementary detectors to provide robust evaluation.
+
+\paragraph{Perplexity Detector.} Following prior work~\citep{mitchell2023detectgpt, gehrmann2019gltr}, we compute text perplexity using GPT-2~\citep{openai2019gpt2}. AI-generated text typically exhibits lower perplexity (more predictable) than human-written text. The detection score is computed as:
+\begin{equation}
+    s_{\text{ppl}} = \frac{1}{1 + \log(\text{PPL}(x))}
+\end{equation}
+where $\text{PPL}(x)$ is the perplexity of text $x$. Higher scores indicate more AI-like text.
+
+\paragraph{Burstiness Detector.} Human writing exhibits ``burstiness''---high variance in sentence length and vocabulary usage---while AI text tends to be more uniform. We compute:
+\begin{equation}
+    s_{\text{burst}} = \alpha \cdot (1 - \text{CV}_{\text{len}}) + (1-\alpha) \cdot (1 - \text{TTR})
+\end{equation}
+where $\text{CV}_{\text{len}}$ is the coefficient of variation of sentence lengths, TTR is the type-token ratio (vocabulary diversity), and $\alpha = 0.5$. Higher scores indicate less bursty (more AI-like) text.
+
+\paragraph{Ensemble Score.} The final detection score combines both signals:
+\begin{equation}
+    s_{\text{ensemble}} = 0.6 \cdot s_{\text{ppl}} + 0.4 \cdot s_{\text{burst}}
+\end{equation}
+We weight perplexity higher as it is the stronger individual signal based on prior work.
+
+\subsection{Inference Track Methods}
+
+We test four inference-time strategies, varying system prompts and user prefixes while keeping the model (GPT-4o-mini) and generation parameters fixed.
+
+\begin{table}[h]
+\centering
+\caption{Inference track methods: system prompts and user prefixes.}
+\label{tab:inference_methods}
+\small
+\begin{tabular}{@{}lp{6cm}p{2.5cm}@{}}
+\toprule
+\textbf{Method} & \textbf{System Prompt} & \textbf{User Prefix} \\
+\midrule
+Baseline & None & None \\
+Human\_style & ``You are a human writer, not an AI. Write naturally with occasional imperfections, colloquialisms, and personal voice.'' & None \\
+Personal & ``Write as a real person sharing their thoughts. Include personal anecdotes, opinions, and natural speech patterns.'' & ``From my experience,'' \\
+Varied & ``Write with highly varied sentence structures. Mix very short sentences with longer ones. Use fragments occasionally.'' & None \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+All methods use temperature $T = 0.7$ and maximum token length of 200 for controlled comparison.
+
+\subsection{Post-editing Track Methods}
+
+We test four post-editing strategies, applying LLM-based paraphrasing (via GPT-4o-mini) to baseline-generated AI text.
+
+\begin{table}[h]
+\centering
+\caption{Post-editing track methods: paraphrasing instructions.}
+\label{tab:postedit_methods}
+\small
+\begin{tabular}{@{}lp{8cm}@{}}
+\toprule
+\textbf{Method} & \textbf{Instruction} \\
+\midrule
+Baseline & No editing (original AI output) \\
+Simple\_paraphrase & ``Rewrite to sound more natural and human-like'' \\
+Casual\_style & ``Make it sound like a casual conversation'' \\
+Personal\_style & ``Add personal experiences and opinions'' \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Datasets}
+
+We use a combination of existing datasets and fresh generations:
+
+\begin{itemize}
+    \item \textbf{RAID Samples}~\citep{dugan2024raid}: 10 AI-generated academic abstracts from diverse generators
+    \item \textbf{AI Text Detection Pile}: 10 human-written student essays
+    \item \textbf{Fresh Generations}: 10 samples per method using GPT-4o-mini on general topics (``What is it like to learn something new?'', ``Explain the importance of renewable energy'', etc.)
+\end{itemize}
+
+All samples are at least 100 tokens to ensure reliable perplexity measurement. Text is truncated to 1000 characters for consistency.
+
+\subsection{Evaluation Metrics}
+
+\paragraph{Detection Metrics.} We report standard detection metrics where \textit{lower values indicate better evasion}:
+\begin{itemize}
+    \item \textbf{AUROC}: Area under the ROC curve (0.5 = random, 1.0 = perfect detection)
+    \item \textbf{TPR@1\%FPR}: True positive rate at 1\% false positive rate
+    \item \textbf{TPR@5\%FPR}: True positive rate at 5\% false positive rate
+\end{itemize}
+
+\paragraph{Evasion Rate.} We define evasion rate as:
+\begin{equation}
+    \text{Evasion Rate} = 1 - \text{TPR@5\%FPR}
+\end{equation}
+Higher evasion rates indicate more successful methods.
+
+\paragraph{Quality Metrics.} For post-editing methods, we measure content preservation:
+\begin{itemize}
+    \item \textbf{Word Overlap}: Jaccard similarity of word sets between original and edited text
+    \item \textbf{Length Ratio}: Edited length divided by original length
+\end{itemize}
+Inference methods have quality score 1.0 by definition (no post-hoc modification).
+
+\subsection{Experimental Setup}
+
+\paragraph{Reproducibility.} All experiments use fixed random seeds (42) for NumPy, PyTorch, and Python's random module. We report 95\% bootstrap confidence intervals for AUROC (±0.08).
+
+\paragraph{Hardware.} Experiments run on 2$\times$ NVIDIA RTX 3090 GPUs (24GB each) with CUDA 12.8. Total execution time is approximately 12 minutes.
+
+\paragraph{Software.} PyTorch 2.9.1, Transformers 4.57.6, OpenAI Python SDK 2.15.0, scikit-learn 1.8.0.

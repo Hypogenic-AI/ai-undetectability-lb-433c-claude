@@ -1,0 +1,44 @@
+\section{Related Work}
+\label{sec:related}
+
+We organize related work into three categories: detection methods, evasion techniques, and benchmarking efforts.
+
+\subsection{AI Text Detection Methods}
+
+Detection methods can be broadly categorized into statistical approaches, learned classifiers, and watermarking techniques.
+
+\paragraph{Statistical Detection.} DetectGPT~\citep{mitchell2023detectgpt} introduced zero-shot detection based on probability curvature, observing that AI-generated text tends to lie in negative curvature regions of the model's log-probability function. Binoculars~\citep{hans2024binoculars} extended this idea by computing the ratio of perplexities between two related LLMs, achieving state-of-the-art zero-shot performance that detects over 90\% of ChatGPT outputs at 0.01\% false positive rate. GLTR~\citep{gehrmann2019gltr} provides statistical visualization of token likelihood distributions to assist human detection. Our perplexity-based detector builds on these foundations while our burstiness detector captures complementary structural patterns.
+
+\paragraph{Learned Classifiers.} Trained detection models leverage supervised learning on human and machine-generated text. RoBERTa-based classifiers have shown strong performance when trained on in-domain data~\citep{solaiman2019release}. RADAR~\citep{hu2023radar} proposed adversarial training between a paraphraser and detector, improving robustness by 31.64\% over baseline methods. However, learned detectors face challenges with generalization to unseen models and domains~\citep{he2024mgtbench}.
+
+\paragraph{Watermarking.} \citet{kirchenbauer2023watermark} introduced watermarking for LLMs by softly promoting ``green list'' tokens during generation, enabling detection with as few as 25 tokens. However, recent work shows watermarks are vulnerable to adaptive attacks that achieve over 96\% evasion rate with negligible quality impact~\citep{diaa2024adaptive}.
+
+\subsection{Evasion Techniques}
+
+Evasion methods aim to reduce detectability while preserving text quality.
+
+\paragraph{Paraphrasing-Based Evasion.} DIPPER~\citep{krishna2023paraphrasing} demonstrated that paraphrasing is highly effective against detection, reducing DetectGPT accuracy from 70.3\% to 4.6\%. The model provides controllable lexical diversity and content reordering. However, paraphrasing can degrade semantic fidelity. \citet{zhou2024humanizing} proposed word-level and sentence-level perturbations to ``humanize'' machine-generated content through adversarial attacks.
+
+\paragraph{Prompt-Based Evasion.} SICO~\citep{lu2024sico} introduced Substitution-based In-Context example Optimization, automatically constructing prompts that evade detectors without external paraphrasers. Using only 40 human-written examples, SICO decreases detector AUC by approximately 0.5 on average. This approach is more computationally efficient than external paraphrasing.
+
+\paragraph{Adaptive Attacks.} \citet{diaa2024adaptive} showed that preference-based optimization (DPO) can tune paraphrasers to evade watermarking schemes, achieving Pareto-optimal trade-offs between quality and evasion. Their attacks transfer across watermarking methods.
+
+\subsection{Benchmarking Efforts}
+
+Several benchmarks have emerged for evaluating detection methods.
+
+\paragraph{Detection-Focused Benchmarks.} RAID~\citep{dugan2024raid} is the largest benchmark for AI text detection, containing over 6 million generations spanning 11 models, 8 domains, 11 adversarial attacks, and 4 decoding strategies. It includes a public leaderboard but focuses on detector evaluation rather than evasion method comparison. MGTBench~\citep{he2024mgtbench} provides a modular framework testing 13 detection methods against 6 LLMs across 3 domains. M4GT-Bench~\citep{wang2024m4gt} extends evaluation to multilingual settings with tasks including binary detection, generator attribution, and change-point detection.
+
+\paragraph{Gap: No Unified Evasion Benchmark.} While these benchmarks comprehensively evaluate detection, they do not systematically organize or compare evasion methods. RAID includes adversarial attacks but treats them as auxiliary evaluations rather than primary subjects. No existing framework structures evasion methods by intervention point (inference, post-editing, fine-tuning, pretraining) with standardized quality-evasion metrics.
+
+\subsection{Positioning Our Work}
+
+Our multi-track leaderboard addresses this gap by:
+\begin{enumerate}
+    \item Organizing evasion methods by intervention point in a unified taxonomy
+    \item Evaluating all methods against the same detector ensemble for fair comparison
+    \item Measuring both evasion success and quality preservation using Pareto-optimal frontiers
+    \item Providing baseline implementations for inference and post-editing tracks
+\end{enumerate}
+
+Unlike prior work that evaluates detection or individual evasion methods, we provide infrastructure for systematic cross-method comparison across different approaches to undetectability.

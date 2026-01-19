@@ -1,0 +1,93 @@
+\section{Discussion}
+\label{sec:discussion}
+
+We discuss the implications of our findings, analyze failure modes, acknowledge limitations, and consider broader impacts.
+
+\subsection{Interpretation of Results}
+
+\paragraph{Why Does Prompt Engineering Work?} Our results show that inference-time prompt modifications achieve substantial evasion (70\%) without any post-processing. We hypothesize two mechanisms: (1) prompts like ``human\_style'' encourage the model to sample from regions of its distribution that overlap more with human writing patterns, and (2) instructions to vary sentence structure directly target the burstiness signal used by our detector.
+
+The success of the ``varied'' prompt (which explicitly requests varied sentence structures) supports the second mechanism---it achieves the lowest mean detection score (0.329) and directly addresses one of our detector components. This suggests that awareness of detection methods can inform effective evasion strategies.
+
+\paragraph{The Personalization Paradox.} Our most surprising finding is that personalization strategies \textit{increase} detectability. The ``personal\_style'' post-editing method achieved only 30\% evasion---worse than unmodified AI text. We identify two explanations:
+
+\begin{enumerate}
+    \item \textbf{Formulaic patterns}: When instructed to add personal elements, LLMs tend to use recognizable phrases like ``You know, I've been thinking...'' or ``From my experience...'' These patterns, while superficially personal, are actually distinctive AI signatures.
+
+    \item \textbf{Structural uniformity}: Personalized outputs often follow a template (personal opener $\rightarrow$ explanation $\rightarrow$ conclusion), maintaining the regularity that burstiness detection targets.
+\end{enumerate}
+
+This finding has important implications: naive attempts to ``humanize'' AI text may backfire by introducing detectable patterns. Effective humanization requires more sophisticated approaches than simply prompting for personal elements.
+
+\paragraph{Post-editing Destroys Content.} While simple paraphrasing achieves 70\% evasion (matching inference methods), it does so at significant cost: only 42\% word overlap with the original text. The casual\_style method shows even more dramatic degradation (16\% overlap). This trade-off may be acceptable in some contexts but is problematic when content preservation is important.
+
+In contrast, inference methods preserve 100\% of content by definition---the evasion comes from \textit{how} content is generated, not from modifying generated content. This fundamental advantage suggests that for applications requiring both naturalness and content fidelity, inference-time strategies are preferable.
+
+\subsection{Error Analysis}
+
+We analyze common failure modes across methods:
+
+\paragraph{Inference Track Failures.}
+\begin{itemize}
+    \item \textbf{Instruction following}: Despite human\_style prompts, outputs sometimes revert to formal, structured patterns when discussing technical topics.
+    \item \textbf{Temperature effects}: With $T=0.7$, models occasionally produce highly coherent (low-perplexity) text that detectors flag as AI-generated.
+\end{itemize}
+
+\paragraph{Post-editing Track Failures.}
+\begin{itemize}
+    \item \textbf{Over-editing}: Casual and personal style transformations introduce so many changes that the semantic content is substantially altered.
+    \item \textbf{Length inflation}: Personalized outputs are often significantly longer, affecting burstiness scores through sentence count changes.
+\end{itemize}
+
+Example failure case:
+\begin{quote}
+\textit{Original}: ``Renewable energy is crucial for environmental sustainability.''\\
+\textit{Personal\_style}: ``You know, I've been thinking a lot about renewable energy lately, and honestly, it's such a big deal for our future. Like, when I think about my kids and what kind of world they'll inherit...''
+\end{quote}
+The opener ``You know, I've been thinking'' is a recognizable AI personalization pattern that increases detectability.
+
+\subsection{Comparison to Prior Work}
+
+Our results are generally consistent with prior findings but show more modest evasion gains:
+
+\begin{table}[h]
+\centering
+\caption{Comparison to prior work. Our results show smaller gains, likely due to ensemble detection and simpler paraphrasing.}
+\label{tab:comparison}
+\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Method} & \textbf{Prior Work} & \textbf{Our Findings} \\
+\midrule
+DIPPER paraphrasing & 70.3\%$\rightarrow$4.6\% TPR~\citep{krishna2023paraphrasing} & 50\%$\rightarrow$30\% TPR \\
+SICO prompting & $\sim$0.5 AUROC drop~\citep{lu2024sico} & 0.06 AUROC drop \\
+Baseline detection & 70--95\% AUROC~\citep{dugan2024raid} & 85--91\% AUROC \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The differences likely stem from: (1) our ensemble detector being more robust than single detectors, (2) our simple paraphrasing being less sophisticated than DIPPER's 11B parameter model, and (3) smaller sample sizes limiting statistical power.
+
+\subsection{Limitations}
+
+We acknowledge several limitations:
+
+\paragraph{Sample Size.} With 10 samples per method, statistical power is limited. Effect sizes suggest meaningful differences, but larger-scale evaluation is needed to confirm rankings with high confidence.
+
+\paragraph{Detector Simplicity.} Our perplexity + burstiness ensemble, while principled, does not capture more sophisticated detection signals like semantic coherence patterns or stylistic markers. State-of-the-art detectors like Binoculars~\citep{hans2024binoculars} or RADAR~\citep{hu2023radar} may produce different rankings.
+
+\paragraph{Single Generator.} We test only GPT-4o-mini. Other models (Claude, LLaMA, Mistral) may show different patterns, particularly for prompt-based evasion where model-specific instruction following varies.
+
+\paragraph{Quality Metrics.} Word overlap is a crude proxy for semantic similarity. BERTScore~\citep{zhang2020bertscore} would provide more accurate quality assessment, particularly for paraphrasing where meaning is preserved despite word changes.
+
+\paragraph{Missing Tracks.} Fine-tuning and pretraining tracks require substantial compute and are not evaluated. These may offer different trade-offs, particularly for fine-tuning which could potentially combine inference benefits with learned evasion patterns.
+
+\subsection{Broader Implications}
+
+\paragraph{For AI Writing Assistants.} Organizations should consider integrating human-style prompts into AI assistants for applications where naturalness matters. Our results suggest this can be achieved without quality degradation, unlike post-hoc paraphrasing.
+
+\paragraph{For Detection Research.} Detection systems should account for prompt-engineered outputs in training data. The effectiveness of simple prompt modifications suggests that detection methods need to be robust to a wide range of generation strategies, not just default outputs.
+
+\paragraph{For Policy.} Our finding that 70\% of AI text evades detection at 5\% FPR has implications for academic integrity and content authentication. While detection is not hopeless, reliance on automated detection alone is insufficient. Watermarking~\citep{kirchenbauer2023watermark} or provenance tracking may be necessary complements.
+
+\paragraph{Dual Use Considerations.} This research documents evasion techniques, which could potentially be misused. However, understanding these techniques is essential for developing robust detection and for legitimate use cases requiring natural AI assistance. We believe the benefits of systematic evaluation outweigh risks, particularly as evasion techniques are already widely known.

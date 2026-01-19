@@ -1,0 +1,113 @@
+\begin{thebibliography}{16}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Diaa et~al.(2024)Diaa, Aremu, and Lukas]{diaa2024adaptive}
+Abdulrahman Diaa, Toluwani Aremu, and Nils Lukas.
+\newblock Optimizing adaptive attacks against watermarks for language models.
+\newblock \emph{arXiv preprint arXiv:2410.02440}, 2024.
+
+\bibitem[Dugan et~al.(2024)Dugan, Hwang, Trhl{\'\i}k, Ludan, Zhu, Xu, Ippolito,
+  and Callison-Burch]{dugan2024raid}
+Liam Dugan, Alyssa Hwang, Filip Trhl{\'\i}k, Josh~Magnus Ludan, Andrew Zhu,
+  Hainiu Xu, Daphne Ippolito, and Chris Callison-Burch.
+\newblock {RAID}: A shared benchmark for robust evaluation of machine-generated
+  text detectors.
+\newblock In \emph{Proceedings of the 62nd Annual Meeting of the Association
+  for Computational Linguistics (ACL)}, 2024.
+
+\bibitem[Gehrmann et~al.(2019)Gehrmann, Strobelt, and Rush]{gehrmann2019gltr}
+Sebastian Gehrmann, Hendrik Strobelt, and Alexander~M Rush.
+\newblock {GLTR}: Statistical detection and visualization of generated text.
+\newblock \emph{arXiv preprint arXiv:1906.04043}, 2019.
+
+\bibitem[Hans et~al.(2024)Hans, Schwarzschild, Cherepanova, Kazemi, Saha,
+  Goldblum, Geiping, and Goldstein]{hans2024binoculars}
+Abhimanyu Hans, Avi Schwarzschild, Valeriia Cherepanova, Hamid Kazemi,
+  Aniruddha Saha, Micah Goldblum, Jonas Geiping, and Tom Goldstein.
+\newblock Binoculars: Zero-shot detection of {LLM}-generated text.
+\newblock In \emph{International Conference on Machine Learning (ICML)}, 2024.
+
+\bibitem[He et~al.(2024)He, Shen, Chen, Backes, and Zhang]{he2024mgtbench}
+Xinlei He, Xinyue Shen, Zeyuan Chen, Michael Backes, and Yang Zhang.
+\newblock {MGTBench}: Benchmarking machine-generated text detection.
+\newblock In \emph{ACM Conference on Computer and Communications Security
+  (CCS)}, 2024.
+
+\bibitem[Hu et~al.(2023)Hu, Chen, and Ho]{hu2023radar}
+Xiaomeng Hu, Pin-Yu Chen, and Tsung-Yi Ho.
+\newblock {RADAR}: Robust {AI}-text detection via adversarial learning.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}, 2023.
+
+\bibitem[Kirchenbauer et~al.(2023)Kirchenbauer, Geiping, Wen, Katz, Miers, and
+  Goldstein]{kirchenbauer2023watermark}
+John Kirchenbauer, Jonas Geiping, Yuxin Wen, Jonathan Katz, Ian Miers, and Tom
+  Goldstein.
+\newblock A watermark for large language models.
+\newblock In \emph{International Conference on Machine Learning (ICML)}, 2023.
+
+\bibitem[Krishna et~al.(2023)Krishna, Song, Karpinska, Wieting, and
+  Iyyer]{krishna2023paraphrasing}
+Kalpesh Krishna, Yixiao Song, Marzena Karpinska, John Wieting, and Mohit Iyyer.
+\newblock Paraphrasing evades detectors of {AI}-generated text, but retrieval
+  is an effective defense.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}, volume~36, 2023.
+
+\bibitem[Lu et~al.(2024)Lu, Liu, He, Ong, Wang, and Tang]{lu2024sico}
+Ning Lu, Shengcai Liu, Rui He, Yew-Soon Ong, Qi~Wang, and Ke~Tang.
+\newblock Large language models can be guided to evade {AI}-generated text
+  detection.
+\newblock \emph{Transactions on Machine Learning Research (TMLR)}, 2024.
+
+\bibitem[Mitchell et~al.(2023)Mitchell, Lee, Khazatsky, Manning, and
+  Finn]{mitchell2023detectgpt}
+Eric Mitchell, Yoonho Lee, Alexander Khazatsky, Christopher~D Manning, and
+  Chelsea Finn.
+\newblock {DetectGPT}: Zero-shot machine-generated text detection using
+  probability curvature.
+\newblock In \emph{International Conference on Machine Learning (ICML)}, 2023.
+
+\bibitem[Radford et~al.(2019)Radford, Wu, Child, Luan, Amodei, and
+  Sutskever]{openai2019gpt2}
+Alec Radford, Jeffrey Wu, Rewon Child, David Luan, Dario Amodei, and Ilya
+  Sutskever.
+\newblock Language models are unsupervised multitask learners.
+\newblock \emph{OpenAI Blog}, 2019.
+
+\bibitem[Solaiman et~al.(2019)Solaiman, Brundage, Clark,
+  et~al.]{solaiman2019release}
+Irene Solaiman, Miles Brundage, Jack Clark, et~al.
+\newblock Release strategies and the social impacts of language models.
+\newblock In \emph{arXiv preprint arXiv:1908.09203}, 2019.
+
+\bibitem[Tang et~al.(2023)Tang, Chuang, and Hu]{tang2023science}
+Ruixiang Tang, Yu-Neng Chuang, and Xia Hu.
+\newblock The science of detecting {LLM}-generated texts.
+\newblock \emph{Communications of the ACM}, 2023.
+
+\bibitem[Wang et~al.(2024)Wang, Mansurov, Ivanov, et~al.]{wang2024m4gt}
+Yuxia Wang, Jonibek Mansurov, Petar Ivanov, et~al.
+\newblock {M4GT-Bench}: Evaluation benchmark for black-box machine-generated
+  text detection.
+\newblock \emph{arXiv preprint arXiv:2402.11175}, 2024.
+
+\bibitem[Zhang et~al.(2020)Zhang, Kishore, Wu, Weinberger, and
+  Artzi]{zhang2020bertscore}
+Tianyi Zhang, Varsha Kishore, Felix Wu, Kilian~Q Weinberger, and Yoav Artzi.
+\newblock {BERTScore}: Evaluating text generation with {BERT}.
+\newblock In \emph{International Conference on Learning Representations
+  (ICLR)}, 2020.
+
+\bibitem[Zhou et~al.(2024)Zhou, He, and Sun]{zhou2024humanizing}
+Ying Zhou, Ben He, and Le~Sun.
+\newblock Humanizing machine-generated content: Evading {AI}-text detection
+  through adversarial attack.
+\newblock In \emph{Proceedings of the 62nd Annual Meeting of the Association
+  for Computational Linguistics (ACL)}, 2024.
+
+\end{thebibliography}

@@ -1,0 +1,74 @@
+\documentclass[11pt,a4paper]{article}
+
+% Basic packages that should be available
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{url}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{natbib}
+
+% Page geometry similar to NeurIPS
+\usepackage{geometry}
+\geometry{
+  letterpaper,
+  textheight=9in,
+  textwidth=5.5in,
+  top=1in,
+  headheight=12pt,
+  headsep=25pt,
+  footskip=30pt
+}
+
+% Simple table rules (replacement for booktabs)
+\newcommand{\toprule}{\hline\hline}
+\newcommand{\midrule}{\hline}
+\newcommand{\bottomrule}{\hline\hline}
+
+% For better table formatting
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+
+% Custom commands
+\newcommand{\methodname}{AI-Undetect}
+
+% Title formatting
+\title{\Large\bfseries A Multi-Track Leaderboard for Benchmarking AI Text Undetectability: Evaluating Inference and Post-Editing Evasion Strategies}
+
+\author{
+  Research Team \\
+  AI Research Lab\\
+  \texttt{research@example.org}
+}
+
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\input{sections/abstract}
+
+\input{sections/introduction}
+
+\input{sections/related_work}
+
+\input{sections/methodology}
+
+\input{sections/results}
+
+\input{sections/discussion}
+
+\input{sections/conclusion}
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\appendix
+\input{appendix/supplementary}
+
+\end{document}

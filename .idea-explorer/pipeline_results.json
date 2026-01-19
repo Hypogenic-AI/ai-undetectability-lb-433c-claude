@@ -1,17 +1,26 @@
 {
-  "success": false,
+  "success": true,
   "stages": {
     "resource_finder": {
-      "success": false,
-      "completion_marker": null,
+      "success": true,
+      "completion_marker": "/data/hypogenicai/workspaces/ai-undetectability-lb-433c-claude/.resource_finder_complete",
       "outputs": {
+        "literature_review": "/data/hypogenicai/workspaces/ai-undetectability-lb-433c-claude/literature_review.md",
+        "resources_catalog": "/data/hypogenicai/workspaces/ai-undetectability-lb-433c-claude/resources.md",
         "papers_dir": "/data/hypogenicai/workspaces/ai-undetectability-lb-433c-claude/papers",
         "datasets_dir": "/data/hypogenicai/workspaces/ai-undetectability-lb-433c-claude/datasets",
         "code_dir": "/data/hypogenicai/workspaces/ai-undetectability-lb-433c-claude/code"
       },
       "log_file": "/data/hypogenicai/workspaces/ai-undetectability-lb-433c-claude/logs/resource_finder_claude.log",
       "transcript_file": "/data/hypogenicai/workspaces/ai-undetectability-lb-433c-claude/logs/resource_finder_claude_transcript.jsonl",
-      "elapsed_time": 5.060714244842529
+      "elapsed_time": 960.6873888969421
+    },
+    "experiment_runner": {
+      "success": true,
+      "return_code": 0,
+      "elapsed_time": 979.3025469779968,
+      "log_file": "/data/hypogenicai/workspaces/ai-undetectability-lb-433c-claude/logs/execution_claude.log",
+      "transcript_file": "/data/hypogenicai/workspaces/ai-undetectability-lb-433c-claude/logs/execution_claude_transcript.jsonl"
     }
   },
   "work_dir": "/data/hypogenicai/workspaces/ai-undetectability-lb-433c-claude"

@@ -1,0 +1,146 @@
+\section{Supplementary Material}
+\label{sec:appendix}
+
+\subsection{Experimental Configuration}
+
+Table~\ref{tab:config} presents the complete experimental configuration.
+
+\begin{table}[h]
+\centering
+\caption{Experimental configuration details.}
+\label{tab:config}
+\small
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Parameter} & \textbf{Value} \\
+\midrule
+Random seed & 42 \\
+Generator model & GPT-4o-mini \\
+Detection model & GPT-2 \\
+Samples per method & 10 \\
+Max generation tokens & 200 \\
+Temperature & 0.7 \\
+Max text length & 1000 characters \\
+\midrule
+PyTorch version & 2.9.1+cu128 \\
+Transformers version & 4.57.6 \\
+OpenAI SDK version & 2.15.0 \\
+Python version & 3.12.2 \\
+CUDA version & 12.8 \\
+\midrule
+Hardware & 2$\times$ NVIDIA RTX 3090 (24GB each) \\
+Execution time & $\sim$12 minutes \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Prompt Templates}
+
+\paragraph{Inference Track System Prompts.}
+
+\textbf{Baseline}: No system prompt.
+
+\textbf{Human\_style}:
+\begin{quote}
+``You are a human writer, not an AI. Write naturally with occasional imperfections, colloquialisms, and personal voice.''
+\end{quote}
+
+\textbf{Personal}:
+\begin{quote}
+``Write as a real person sharing their thoughts. Include personal anecdotes, opinions, and natural speech patterns.''
+\end{quote}
+User prefix: ``From my experience,''
+
+\textbf{Varied}:
+\begin{quote}
+``Write with highly varied sentence structures. Mix very short sentences with longer ones. Use fragments occasionally.''
+\end{quote}
+
+\paragraph{Post-editing Track Instructions.}
+
+\textbf{Simple\_paraphrase}: ``Rewrite to sound more natural and human-like''
+
+\textbf{Casual\_style}: ``Make it sound like a casual conversation''
+
+\textbf{Personal\_style}: ``Add personal experiences and opinions''
+
+\subsection{Generation Topics}
+
+The following prompts were used to generate text samples:
+\begin{enumerate}
+    \item ``What is it like to learn something new?''
+    \item ``Explain the importance of renewable energy.''
+    \item ``Describe your favorite season and why you like it.''
+    \item ``What makes a good leader?''
+    \item ``Discuss the impact of social media on society.''
+    \item ``Explain why exercise is important for health.''
+    \item ``What are the benefits of reading books?''
+    \item ``Describe a memorable travel experience.''
+    \item ``Discuss the importance of time management.''
+    \item ``What role does music play in people's lives?''
+\end{enumerate}
+
+\subsection{Sample Outputs}
+
+\paragraph{Baseline Generation.}
+\begin{quote}
+``Learning something new can be a multifaceted experience, often filled with a mix of excitement, challenge, and discovery. Here's a breakdown of what that experience might entail: Initial curiosity or necessity often sparks the learning journey. You might feel excited about the possibilities that new knowledge or skills can open up...''
+\end{quote}
+
+\paragraph{Human\_style Generation.}
+\begin{quote}
+``Learning something new is like setting out on a little adventure, isn't it? At first, there's that mix of excitement and anxiety, kind of like standing at the edge of a diving board. You're curious but also a bit nervous about what's ahead...''
+\end{quote}
+
+\paragraph{Personal\_style Post-editing (Failure Case).}
+\begin{quote}
+``You know, I've been thinking a lot about renewable energy lately, and honestly, it's such a big deal for our future. Like, when I think about my kids and what kind of world they'll inherit, it really hits home...''
+\end{quote}
+
+\subsection{Detector Score Computation}
+
+\paragraph{Perplexity Score.}
+Given text $x = (x_1, \ldots, x_n)$, we compute:
+\begin{align}
+    \text{PPL}(x) &= \exp\left(-\frac{1}{n}\sum_{i=1}^{n} \log p(x_i | x_{<i})\right) \\
+    s_{\text{ppl}} &= \frac{1}{1 + \log(\text{PPL}(x))}
+\end{align}
+
+\paragraph{Burstiness Score.}
+Given sentences $S = (s_1, \ldots, s_m)$ with lengths $L = (l_1, \ldots, l_m)$:
+\begin{align}
+    \text{CV}_{\text{len}} &= \frac{\sigma(L)}{\mu(L)} \\
+    \text{TTR} &= \frac{|\text{unique tokens}|}{|\text{total tokens}|} \\
+    s_{\text{burst}} &= 0.5 \cdot (1 - \text{CV}_{\text{len}}) + 0.5 \cdot (1 - \text{TTR})
+\end{align}
+
+\paragraph{Ensemble Score.}
+\begin{equation}
+    s_{\text{ensemble}} = 0.6 \cdot s_{\text{ppl}} + 0.4 \cdot s_{\text{burst}}
+\end{equation}
+
+\subsection{Full Results Table}
+
+\begin{table}[h]
+\centering
+\caption{Complete detection results by method.}
+\label{tab:full_results}
+\small
+\begin{tabular}{@{}llccccc@{}}
+\toprule
+\textbf{Track} & \textbf{Method} & \textbf{Mean Score} & \textbf{Std} & \textbf{AUROC} & \textbf{TPR@5\%} & \textbf{Quality} \\
+\midrule
+-- & Human baseline & 0.295 & 0.032 & -- & -- & -- \\
+\midrule
+Inference & baseline & 0.339 & 0.028 & 0.85 & 0.50 & 1.00 \\
+Inference & human\_style & 0.331 & 0.031 & 0.79 & 0.30 & 1.00 \\
+Inference & personal & 0.335 & 0.029 & 0.83 & 0.40 & 1.00 \\
+Inference & varied & 0.329 & 0.035 & 0.77 & 0.30 & 1.00 \\
+\midrule
+Post-edit & baseline & 0.341 & 0.026 & 0.91 & 0.50 & 1.00 \\
+Post-edit & simple\_paraphrase & 0.327 & 0.038 & 0.76 & 0.30 & 0.42 \\
+Post-edit & casual\_style & 0.334 & 0.041 & 0.85 & 0.30 & 0.16 \\
+Post-edit & personal\_style & 0.345 & 0.024 & 0.97 & 0.70 & 0.18 \\
+\bottomrule
+\end{tabular}
+\end{table}

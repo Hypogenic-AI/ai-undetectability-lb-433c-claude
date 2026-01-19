@@ -1,0 +1,65 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+We introduced a multi-track leaderboard framework for systematically benchmarking AI text undetectability methods, organizing techniques by their intervention point: inference, post-editing, fine-tuning, and pretraining. Through experiments on the first two tracks, we demonstrated the viability and utility of this framework for comparing evasion strategies.
+
+\subsection{Summary of Contributions}
+
+\begin{enumerate}
+    \item \textbf{Framework Design}: We proposed a four-track taxonomy that structures undetectability methods by intervention point, providing a principled organization for comparing fundamentally different approaches.
+
+    \item \textbf{Empirical Evaluation}: We implemented and evaluated inference and post-editing tracks using an ensemble detector, finding that prompt engineering achieves 70\% evasion while preserving full semantic content.
+
+    \item \textbf{Quality-Evasion Analysis}: We demonstrated that inference methods dominate the Pareto frontier, achieving superior quality-evasion trade-offs compared to post-editing approaches that sacrifice content fidelity.
+
+    \item \textbf{Counterintuitive Finding}: We discovered that personalization strategies increase detectability, revealing that LLM-style personalization patterns are recognizable detection signatures rather than effective humanization.
+\end{enumerate}
+
+\subsection{Key Takeaways}
+
+For practitioners developing AI writing systems:
+\begin{itemize}
+    \item \textbf{Prefer prompt engineering over post-editing} for naturalness---it achieves equivalent evasion without quality loss.
+    \item \textbf{Avoid formulaic personalization}---phrases like ``From my experience'' or ``You know, I've been thinking'' increase rather than decrease detectability.
+    \item \textbf{Vary sentence structure explicitly}---this directly targets detection heuristics based on writing uniformity.
+\end{itemize}
+
+For detection researchers:
+\begin{itemize}
+    \item \textbf{Train on prompt-engineered outputs}---baseline AI text is not representative of what motivated actors produce.
+    \item \textbf{Use ensemble methods}---combining complementary signals (perplexity, burstiness) provides more robust evaluation.
+    \item \textbf{Consider quality-evasion trade-offs}---some evasion methods destroy semantic content, which may be detectable through other means.
+\end{itemize}
+
+\subsection{Future Work}
+
+Several directions extend this work:
+
+\paragraph{Immediate Extensions.}
+\begin{itemize}
+    \item Increase sample size to 100+ per method for statistical significance
+    \item Add BERTScore for proper semantic similarity measurement
+    \item Test multiple generators (Claude, GPT-4, open-source models)
+    \item Evaluate against state-of-the-art detectors (Binoculars, RADAR)
+\end{itemize}
+
+\paragraph{Additional Tracks.}
+\begin{itemize}
+    \item \textbf{Fine-tuning Track}: LoRA adapters trained to minimize detection scores
+    \item \textbf{Pretraining Track}: Training-time interventions and watermark removal
+    \item \textbf{Adversarial Track}: Methods that explicitly optimize against specific detectors
+\end{itemize}
+
+\paragraph{Broader Extensions.}
+\begin{itemize}
+    \item Multi-domain evaluation across academic, creative, and technical writing
+    \item Multilingual support for non-English text detection and evasion
+    \item Human evaluation studies comparing automated metrics to human judgments
+    \item Real-world deployment studies measuring evasion effectiveness in practice
+\end{itemize}
+
+\subsection{Closing Remarks}
+
+As AI-generated text becomes increasingly sophisticated and prevalent, the interplay between detection and evasion will continue to evolve. By establishing a systematic framework for evaluating undetectability methods, we provide infrastructure for ongoing research in this critical area. Our finding that simple prompt modifications can achieve substantial evasion while preserving quality underscores both the challenge facing detection systems and the opportunities for legitimate applications requiring natural AI assistance.
+
+The leaderboard framework introduced here enables fair comparison across methods and tracks, supporting the development of more robust detection systems and more natural AI text generation. We hope this work contributes to a balanced understanding of both capabilities and limitations in this rapidly advancing field.

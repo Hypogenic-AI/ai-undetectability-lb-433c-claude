@@ -1,0 +1,172 @@
+\relax 
+\citation{solaiman2019release,tang2023science}
+\citation{mitchell2023detectgpt}
+\citation{he2024mgtbench}
+\citation{krishna2023paraphrasing}
+\citation{lu2024sico}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}\protected@file@percent }
+\citation{dugan2024raid}
+\citation{he2024mgtbench}
+\citation{wang2024m4gt}
+\@writefile{toc}{\contentsline {paragraph}{Gap in Existing Work.}{2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Our Contributions.}{2}\protected@file@percent }
+\citation{mitchell2023detectgpt}
+\citation{hans2024binoculars}
+\citation{gehrmann2019gltr}
+\citation{solaiman2019release}
+\citation{hu2023radar}
+\citation{he2024mgtbench}
+\citation{kirchenbauer2023watermark}
+\citation{diaa2024adaptive}
+\citation{krishna2023paraphrasing}
+\citation{zhou2024humanizing}
+\@writefile{toc}{\contentsline {paragraph}{Paper Organization.}{3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{3}\protected@file@percent }
+\newlabel{sec:related}{{2}{3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}AI Text Detection Methods}{3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Statistical Detection.}{3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Learned Classifiers.}{3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Watermarking.}{3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Evasion Techniques}{3}\protected@file@percent }
+\citation{lu2024sico}
+\citation{diaa2024adaptive}
+\citation{dugan2024raid}
+\citation{he2024mgtbench}
+\citation{wang2024m4gt}
+\@writefile{toc}{\contentsline {paragraph}{Paraphrasing-Based Evasion.}{4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Prompt-Based Evasion.}{4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Adaptive Attacks.}{4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Benchmarking Efforts}{4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Detection-Focused Benchmarks.}{4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Gap: No Unified Evasion Benchmark.}{4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Positioning Our Work}{4}\protected@file@percent }
+\citation{mitchell2023detectgpt,gehrmann2019gltr}
+\citation{openai2019gpt2}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Methodology}{5}\protected@file@percent }
+\newlabel{sec:methodology}{{3}{5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Leaderboard Framework Design}{5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Track Taxonomy.}{5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Evaluation Protocol.}{5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Detector Ensemble}{5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Perplexity Detector.}{6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Burstiness Detector.}{6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Ensemble Score.}{6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Inference Track Methods}{6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Inference track methods: system prompts and user prefixes.}}{6}\protected@file@percent }
+\newlabel{tab:inference_methods}{{1}{6}}
+\citation{dugan2024raid}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Post-editing track methods: paraphrasing instructions.}}{7}\protected@file@percent }
+\newlabel{tab:postedit_methods}{{2}{7}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Post-editing Track Methods}{7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Datasets}{7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Evaluation Metrics}{7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Detection Metrics.}{7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Evasion Rate.}{7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Quality Metrics.}{7}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Leaderboard ranking of undetectability methods. Methods are ranked by evasion rate (1 - TPR@5\%FPR). Higher evasion rates are better. Quality score represents content preservation (1.0 for inference methods, word overlap for post-editing).}}{8}\protected@file@percent }
+\newlabel{tab:leaderboard}{{3}{8}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.7}Experimental Setup}{8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Reproducibility.}{8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Hardware.}{8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Software.}{8}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Results}{8}\protected@file@percent }
+\newlabel{sec:results}{{4}{8}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Leaderboard Rankings}{8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Key Observations.}{8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Track Comparison}{8}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Track comparison: Mean detection scores by track and method. Lower scores indicate better evasion. Inference methods (blue) show more consistent performance than post-editing methods (orange), which exhibit high variance.}}{9}\protected@file@percent }
+\newlabel{fig:track_comparison}{{1}{9}}
+\@writefile{toc}{\contentsline {paragraph}{Inference Track Performance.}{9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Post-editing Track Performance.}{9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Detection Score Distributions}{9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Quality-Evasion Trade-off}{9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Pareto-Optimal Methods.}{9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Quantitative Trade-offs.}{9}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Detection score distributions by method. Human-written text (leftmost) shows the target distribution. Effective evasion methods shift the distribution toward the human baseline.}}{10}\protected@file@percent }
+\newlabel{fig:detection_dist}{{2}{10}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Hypothesis Testing}{10}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Hypothesis testing results.}}{10}\protected@file@percent }
+\newlabel{tab:hypotheses}{{4}{10}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Ablation: Detector Components}{10}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Quality-evasion trade-off (Pareto analysis). Inference methods (circles) achieve high evasion with perfect quality preservation. Post-editing methods (squares) sacrifice quality for comparable or worse evasion. The Pareto frontier is dominated by inference methods.}}{11}\protected@file@percent }
+\newlabel{fig:pareto}{{3}{11}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Ablation study: Detection AUROC for individual detectors versus ensemble. The ensemble provides more stable rankings across methods.}}{11}\protected@file@percent }
+\newlabel{tab:ablation}{{5}{11}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Statistical Significance}{11}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{11}\protected@file@percent }
+\newlabel{sec:discussion}{{5}{11}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Interpretation of Results}{12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Why Does Prompt Engineering Work?}{12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The Personalization Paradox.}{12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Post-editing Destroys Content.}{12}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Error Analysis}{12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Inference Track Failures.}{12}\protected@file@percent }
+\citation{krishna2023paraphrasing}
+\citation{lu2024sico}
+\citation{dugan2024raid}
+\citation{hans2024binoculars}
+\citation{hu2023radar}
+\@writefile{toc}{\contentsline {paragraph}{Post-editing Track Failures.}{13}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Comparison to Prior Work}{13}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Comparison to prior work. Our results show smaller gains, likely due to ensemble detection and simpler paraphrasing.}}{13}\protected@file@percent }
+\newlabel{tab:comparison}{{6}{13}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Limitations}{13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Sample Size.}{13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Detector Simplicity.}{13}\protected@file@percent }
+\citation{zhang2020bertscore}
+\citation{kirchenbauer2023watermark}
+\@writefile{toc}{\contentsline {paragraph}{Single Generator.}{14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Quality Metrics.}{14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Missing Tracks.}{14}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Broader Implications}{14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{For AI Writing Assistants.}{14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{For Detection Research.}{14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{For Policy.}{14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Dual Use Considerations.}{14}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{14}\protected@file@percent }
+\newlabel{sec:conclusion}{{6}{14}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Summary of Contributions}{15}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Key Takeaways}{15}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Future Work}{15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Immediate Extensions.}{15}\protected@file@percent }
+\bibstyle{plainnat}
+\bibdata{references}
+\bibcite{diaa2024adaptive}{{1}{2024}{{Diaa et~al.}}{{Diaa, Aremu, and Lukas}}}
+\bibcite{dugan2024raid}{{2}{2024}{{Dugan et~al.}}{{Dugan, Hwang, Trhl{\'\i }k, Ludan, Zhu, Xu, Ippolito, and Callison-Burch}}}
+\bibcite{gehrmann2019gltr}{{3}{2019}{{Gehrmann et~al.}}{{Gehrmann, Strobelt, and Rush}}}
+\bibcite{hans2024binoculars}{{4}{2024}{{Hans et~al.}}{{Hans, Schwarzschild, Cherepanova, Kazemi, Saha, Goldblum, Geiping, and Goldstein}}}
+\bibcite{he2024mgtbench}{{5}{2024}{{He et~al.}}{{He, Shen, Chen, Backes, and Zhang}}}
+\@writefile{toc}{\contentsline {paragraph}{Additional Tracks.}{16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Broader Extensions.}{16}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Closing Remarks}{16}\protected@file@percent }
+\bibcite{hu2023radar}{{6}{2023}{{Hu et~al.}}{{Hu, Chen, and Ho}}}
+\bibcite{kirchenbauer2023watermark}{{7}{2023}{{Kirchenbauer et~al.}}{{Kirchenbauer, Geiping, Wen, Katz, Miers, and Goldstein}}}
+\bibcite{krishna2023paraphrasing}{{8}{2023}{{Krishna et~al.}}{{Krishna, Song, Karpinska, Wieting, and Iyyer}}}
+\bibcite{lu2024sico}{{9}{2024}{{Lu et~al.}}{{Lu, Liu, He, Ong, Wang, and Tang}}}
+\bibcite{mitchell2023detectgpt}{{10}{2023}{{Mitchell et~al.}}{{Mitchell, Lee, Khazatsky, Manning, and Finn}}}
+\bibcite{openai2019gpt2}{{11}{2019}{{Radford et~al.}}{{Radford, Wu, Child, Luan, Amodei, and Sutskever}}}
+\bibcite{solaiman2019release}{{12}{2019}{{Solaiman et~al.}}{{Solaiman, Brundage, Clark, et~al.}}}
+\bibcite{tang2023science}{{13}{2023}{{Tang et~al.}}{{Tang, Chuang, and Hu}}}
+\bibcite{wang2024m4gt}{{14}{2024}{{Wang et~al.}}{{Wang, Mansurov, Ivanov, et~al.}}}
+\bibcite{zhang2020bertscore}{{15}{2020}{{Zhang et~al.}}{{Zhang, Kishore, Wu, Weinberger, and Artzi}}}
+\bibcite{zhou2024humanizing}{{16}{2024}{{Zhou et~al.}}{{Zhou, He, and Sun}}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Supplementary Material}{17}\protected@file@percent }
+\newlabel{sec:appendix}{{A}{17}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.1}Experimental Configuration}{17}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Experimental configuration details.}}{18}\protected@file@percent }
+\newlabel{tab:config}{{7}{18}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.2}Prompt Templates}{18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Inference Track System Prompts.}{18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Post-editing Track Instructions.}{18}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.3}Generation Topics}{18}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.4}Sample Outputs}{19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Baseline Generation.}{19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Human\_style Generation.}{19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Personal\_style Post-editing (Failure Case).}{19}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.5}Detector Score Computation}{19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Perplexity Score.}{19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Burstiness Score.}{19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Ensemble Score.}{20}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.6}Full Results Table}{20}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Complete detection results by method.}}{20}\protected@file@percent }
+\newlabel{tab:full_results}{{8}{20}}
